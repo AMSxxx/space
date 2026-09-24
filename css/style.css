@@ -1,0 +1,425 @@
+:root{
+    --primary-color: rgb(0, 241, 254);
+    --accent-color: rgb(79, 172, 254);
+    --bg-dark: rgb(7, 7, 20);
+    --text-light: rgb(255, 255, 255);
+    --text-muted: rgb(160, 174, 192);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+::selection{
+    background: var(--primary-color);
+    color: var(--text-light);
+}
+
+::-moz-selection{
+    background: var(--primary-color);
+    color: var(--text-light);
+}
+
+::-webkit-scrollbar{
+    width: 12px;
+}
+
+::-webkit-scrollbar-track{
+    background: var(--bg-dark);
+    border-left: 1px solid rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color)); /* تدرج لوني نيون أزرق ممتد */
+    border-radius: 20px; /* جعل حواف المقبض دائرية وناعمة */
+    border: 3px solid #070714; /* إضافة فراغ حول المقبض ليعطيه مظهراً عائماً فخماً */
+    transition: background 0.3s ease;
+}
+
+/* 4. تأثير تمرير الماوس فوق المقبض (Hover) */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #ffffff, var(--primary-color));
+}
+/* 4. تصميم قسم الواجهة الترحيبية */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* تأخذ طول الشاشة بالكامل */
+    background: linear-gradient(rgba(7, 7, 20, 0.6), rgba(7, 7, 20, 0.8)), url('images/bg.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #ffffff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* تأثير النص المضيء المتدرج */
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+/* تصميم أيقونة السهم التفاعلية المتحركة */
+.scroll-indicator {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    animation: bounce 2s infinite; /* تشغيل أنيميشن الارتداد باستمرار */
+    cursor: pointer;
+}
+
+/* تأثير حركة الارتداد للسهم (Bounce Animation) */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* 5. تصميم خط الزمن الكبير الحاوي */
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px;
+}
+
+/* الخط العمودي المنتصف الذي يربط الكواكب ببعضها */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color), transparent);
+    box-shadow: 0 0 15px var(--primary-color); /* تأثير خط مضيء (Neon Line) */
+    z-index: 1;
+}
+
+/* تصميم عناصر المحطات (الكوكب + النص) */
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 150px; /* مسافة مريحة بين كل كوكب وكوكب */
+    position: relative;
+    z-index: 2;
+}
+
+/* توزيع العناصر: جعل محطة يمين ومحطة يسار بالتناوب */
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+
+/* 6. تصميم الكواكب وحركتها الدائرية */
+.planet-visual {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.planet-img {
+    width: 250px; /* حجم موحد ومناسب لكل الكواكب */
+    height: 250px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(0, 242, 254, 0.3)); /* توهج خفيف حول الكوكب */
+    animation: spin 40s linear infinite; /* دوران مستمر بطيء وناعم */
+}
+
+/* أنيميشن الدوران حول النفس */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 7. تصميم بطاقات النصوص (Content Boxes) */
+.content-box {
+    width: 45%;
+    background: rgba(255, 255, 255, 0.03); /* خلفية شبه شفافة */
+    backdrop-filter: blur(10px); /* تأثير الزجاج المغبش */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+/* تأثير عند تمرير الماوس فوق الكرت (Hover Effect) */
+.content-box:hover {
+    transform: translateY(-5px); /* يرتفع الكرت قليلاً */
+    border-color: var(--primary-color); /* يضيء الحواف بالأزرق الفضائي */
+}
+
+.content-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.content-box p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+/* 8. تصميم أزرار الاستكشاف */
+.explore-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* مسافة بين النص والأيقونة */
+    transition: all 0.3s ease;
+}
+
+.explore-btn i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* تأثير الماوس على الزر */
+.explore-btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark); /* ينعكس اللون ليصبح داكن مريح */
+    box-shadow: 0 0 15px var(--primary-color); /* توهج نيون حول الزر */
+}
+
+/* حركة الأيقونة داخل الزر عند الـ Hover */
+.explore-btn:hover i {
+    transform: translateX(5px); /* السهم يتحرك لليمين قليلاً */
+}
+
+/* 9. تصميم الصندوق المنبثق (Modal) */
+/* 9. تصميم الصندوق المنبثق (Modal) المعدل بأنيميشن لذيذ */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 7, 20, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    
+    /* إضافة تأثير التلاشي التدريجي للظهرية */
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* زر الإغلاق الدائري الجديد مع الأنيميشن */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;  /* تحديد عرض ثابت للدائرة */
+    height: 40px; /* تحديد طول ثابت للدائرة */
+    background: rgba(255, 255, 255, 0.05); /* خلفية شبه شفافة داخل الدائرة */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%; /* تحويل الحواف إلى دائرة كاملة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem; /* حجم مناسب للأيقونة بالداخل */
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* حركة ناعمة وسريعة */
+}
+
+/* التأثير التفاعلي عند تمرير الماوس فوق الدائرة (Hover) */
+.close-btn:hover {
+    background: #ff4a4a; /* تتحول الدائرة بالكامل للون الأحمر التحذيري */
+    color: #ffffff;      /* تتحول أيقونة الـ X بالداخل للون الأبيض الصافي */
+    border-color: #ff4a4a;
+    box-shadow: 0 0 15px rgba(255, 74, 74, 0.5); /* توهج نيون أحمر خفيف حول الدائرة */
+    transform: rotate(90deg) scale(1.1); /* الحركة اللذيذة: تدور الأيقونة 90 درجة وتكبر قليلاً! */
+}
+
+
+.modal-content {
+    background: #0f1026;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
+    
+    /* هنا اللذاذة: الكرت يبدأ بحجمه الطبيعي وتأثير حركة ناعم */
+    transform: scale(1);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* حركة ارتدادية مطاطية لزيزة */
+}
+
+/* التعديل السحري لكلاس الإخفاء */
+.hidden {
+    display: none !important;
+}
+
+/* كلاس مكمل بنحتاجه عشان يبدأ الأنيميشن من الصفر عند الفتح */
+.modal.fade-out {
+    opacity: 0;
+}
+.modal.fade-out .modal-content {
+    transform: scale(0.7); /* الكرت يكون صغير ومخفي قبل ما يفتح */
+}
+
+
+.modal-content {
+    background: #0f1026;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 95%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
+    
+    /* حل مشكلة الالتصاق والاتجاه */
+    text-align: left; /* محاذاة النص لليسار لأن الموقع إنجليزي */
+    direction: ltr;   /* ترتيب العناصر من اليسار لليمين داخل الكرت */
+    
+    transform: scale(1);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#modal-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px; /* زيادة المسافة تحت العنوان */
+    padding-right: 50px; /* إعطاء مسافة أمان عشان العنوان ما يضرب في زر الـ X */
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+#modal-body {
+    font-size: 1.05rem;
+    color: var(--text-light);
+    line-height: 2; /* زيادة التباعد بين السطور عشان النص يتنفس */
+}
+
+/* ترتيب القائمة والنقاط بشكل فخم */
+#modal-body ul {
+    list-style: none; /* إخفاء النقاط العادية */
+    padding: 0;
+    margin: 0;
+}
+
+#modal-body li {
+    margin-bottom: 15px; /* مسافة بين كل حدث تاريخي والآخر */
+    position: relative;
+    padding-left: 20px; /* مسافة للنجم المضيء */
+}
+
+/* إضافة نقطة مضيئة نيون بدلاً من النقطة العادية */
+#modal-body li::before {
+    content: "•";
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+
+/* --- جعل الموقع متجاوب مع جميع الشاشات (Responsive Design) --- */
+
+/* 1. الشاشات المتوسطة (مثل الأيباد والتابلت) */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 2.8rem; /* تصغير عنوان الهيدر قليلاً */
+    }
+    
+    .planet-img {
+        width: 200px; /* تصغير حجم الكواكب لتناسب المساحة */
+        height: 200px;
+    }
+    
+    .content-box h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* 2. الشاشات الصغيرة (مثل الجوالات الذكية) */
+@media (max-width: 768px) {
+    /* تحويل الخط العمودي في المنتصف ليكون على اليسار قليلاً */
+    .timeline-line {
+        left: 30px;
+        transform: none;
+    }
+    
+    /* تحويل طريقة عرض الكواكب والنصوص من أفقي إلى عمودي فوق بعض */
+    .timeline-item, .timeline-item:nth-child(even) {
+        flex-direction: column;
+        align-items: flex-start; /* ترتيب العناصر لتبدأ من اليسار بالتوازي مع الخط */
+        margin-bottom: 80px;
+        padding-left: 60px; /* إعطاء مسافة أمان عن الخط المضيء */
+    }
+    
+    /* جعل الكواكب والنصوص تأخذ العرض الكامل المتاح */
+    .planet-visual, .content-box {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .planet-visual {
+        margin-bottom: 20px; /* مسافة بين الكوكب والكرت اللي تحته */
+    }
+    
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 20px; /* مسافة أمان للحواف في الجوال */
+    }
+    
+    /* تعديل أبعاد الكرت المنبثق (Modal) ليناسب شاشة الجوال */
+    .modal-content {
+        padding: 30px 20px;
+        width: 92%;
+    }
+    
+    #modal-title {
+        font-size: 1.5rem;
+    }
+}
